@@ -24,6 +24,18 @@ const NtlConsent = NtlConsentModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NtlConsent.multiply(a, b);
+export function setGrantAnalyticsStorage(callback: () => void) {
+  return NtlConsent.setGrantAnalyticsStorage(callback);
+}
+
+export function setDenyAnalyticsStorage(callback: () => void) {
+  return NtlConsent.setDenyAnalyticsStorage(callback);
+}
+
+export function setGrantAdStorage(callback: () => void) {
+  return NtlConsent.setGrantAdStorage(callback);
+}
+
+export function setDenyAdStorage(callback: () => void) {
+  return NtlConsent.setDenyAdStorage(callback);
 }

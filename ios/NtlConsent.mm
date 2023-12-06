@@ -3,16 +3,52 @@
 @implementation NtlConsent
 RCT_EXPORT_MODULE()
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_EXPORT_METHOD(multiply:(double)a
-                  b:(double)b
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
-{
-    NSNumber *result = @(a * b);
+RCT_EXPORT_METHOD(setGrantAnalyticsStorage:(RCTResponseSenderBlock)callback){
+ @try{
+   [FIRAnalytics setConsent:@{
+     FIRConsentTypeAnalyticsStorage : FIRConsentStatusGranted
+   }];
+   callback(@[[NSNull null],  @"analytics_storage granted"]);
+ }
+ @catch(NSException *exception){
+   callback(@[exception.reason, [NSNull null]]);
+ }
+}
 
-    resolve(result);
+RCT_EXPORT_METHOD(setDenyAnalyticsStorage:(RCTResponseSenderBlock)callback){
+ @try{
+   [FIRAnalytics setConsent:@{
+     FIRConsentTypeAnalyticsStorage : FIRConsentStatusDenied
+   }];
+   callback(@[[NSNull null], @"analytics_storage denied"]);
+ }
+ @catch(NSException *exception){
+   callback(@[exception.reason, [NSNull null]]);
+ }
+}
+
+RCT_EXPORT_METHOD(setGrantAdStorage:(RCTResponseSenderBlock)callback){
+ @try{
+   [FIRAnalytics setConsent:@{
+    FIRConsentTypeAdStorage : FIRConsentStatusGranted
+  }];
+   callback(@[[NSNull null],  @"ad_storage granted"]);
+ }
+ @catch(NSException *exception){
+   callback(@[exception.reason, [NSNull null]]);
+ }
+}
+
+RCT_EXPORT_METHOD(setDenyAdStorage:(RCTResponseSenderBlock)callback){
+ @try{
+   [FIRAnalytics setConsent:@{
+    FIRConsentTypeAdStorage : FIRConsentStatusDenied
+  }];
+   callback(@[[NSNull null],  @"ad_storage denied"]);
+ }
+ @catch(NSException *exception){
+   callback(@[exception.reason, [NSNull null]]);
+ }
 }
 
 // Don't compile this code when we build for the old architecture.
@@ -20,8 +56,9 @@ RCT_EXPORT_METHOD(multiply:(double)a
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {
-    return std::make_shared<facebook::react::NativeNtlConsentSpecJSI>(params);
+    return std::make_shared<facebook::react::NativeNtlPdpaConsentSpecJSI>(params);
 }
 #endif
 
 @end
+
