@@ -1,4 +1,6 @@
 #import "NtlConsent.h"
+#import <Firebase/Firebase.h>
+#import <RNFBApp/RNFBSharedUtils.h>
 
 @implementation NtlConsent
 RCT_EXPORT_MODULE()
