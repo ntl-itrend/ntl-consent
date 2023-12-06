@@ -9,8 +9,8 @@ abstract class NtlConsentSpec extends ReactContextBaseJavaModule {
     super(context);
   }
 
-  public abstract void setGrantAnalyticsStorage(cb: Callback);
-  public abstract void setDenyAnalyticsStorage(cb: Callback);
-  public abstract void setGrantAdStorage(cb: Callback);
-  public abstract void setDenyAdStorage(cb: Callback);
+  public abstract void setGrantAnalyticsStorage(Callback cb);
+  public abstract void setDenyAnalyticsStorage(Callback cb);
+  public abstract void setGrantAdStorage(Callback cb);
+  public abstract void setDenyAdStorage(Callback cb);
 }
