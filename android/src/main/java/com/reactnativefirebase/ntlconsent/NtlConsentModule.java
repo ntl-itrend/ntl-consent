@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class NtlConsentModule extends NtlConsentSpec {
   public static final String NAME = "NtlConsent";
+  FirebaseAnalytics firebaseAnalytics;
 
   NtlConsentModule(ReactApplicationContext context) {
     super(context);
